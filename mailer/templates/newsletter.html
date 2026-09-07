@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ digest.date_str }} - Daily Tech Digest</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f1f5f9;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: #1e293b;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrapper {
+      width: 100%;
+      table-layout: fixed;
+      background-color: #f1f5f9;
+      padding: 30px 10px;
+    }
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      border: 1px solid #e2e8f0;
+    }
+    .header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      padding: 36px 32px 28px;
+      color: #ffffff;
+      text-align: left;
+    }
+    .badge {
+      display: inline-block;
+      background-color: #38bdf8;
+      color: #0f172a;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+    .title {
+      margin: 0 0 8px 0;
+      font-size: 26px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+    }
+    .subtitle {
+      margin: 0;
+      font-size: 14px;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+    .stats-bar {
+      background-color: #090d16;
+      padding: 12px 32px;
+      display: flex;
+      justify-content: space-between;
+      color: #64748b;
+      font-size: 12px;
+      font-weight: 500;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .content-body {
+      padding: 32px 28px;
+    }
+    .greeting-box {
+      background-color: #f8fafc;
+      border-left: 4px solid #38bdf8;
+      padding: 14px 18px;
+      margin-bottom: 28px;
+      border-radius: 0 8px 8px 0;
+      font-size: 14px;
+      color: #334155;
+      line-height: 1.5;
+    }
+    .category-header {
+      margin-top: 28px;
+      margin-bottom: 18px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+    }
+    .category-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0;
+    }
+    .category-desc {
+      font-size: 12px;
+      color: #64748b;
+      margin: 4px 0 0 0;
+    }
+    .item-card {
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 18px;
+      transition: all 0.2s ease;
+    }
+    .item-headline {
+      font-size: 16px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0 0 10px 0;
+      line-height: 1.4;
+    }
+    .meta-row {
+      font-size: 12px;
+      color: #64748b;
+      margin-bottom: 12px;
+    }
+    .author-pill {
+      color: #0284c7;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .bullet-list {
+      margin: 0 0 14px 0;
+      padding-left: 18px;
+      font-size: 13.5px;
+      color: #334155;
+      line-height: 1.6;
+    }
+    .bullet-list li {
+      margin-bottom: 4px;
+    }
+    .why-matters {
+      background-color: #f8fafc;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 12.5px;
+      color: #475569;
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+    .why-matters strong {
+      color: #0f172a;
+    }
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .btn-x {
+      display: inline-block;
+      background-color: #0f172a;
+      color: #ffffff !important;
+      font-size: 11px;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+    .btn-link {
+      display: inline-block;
+      background-color: #e0f2fe;
+      color: #0369a1 !important;
+      font-size: 11px;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+    .tag {
+      font-size: 10px;
+      font-weight: 600;
+      background-color: #f1f5f9;
+      color: #475569;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-left: auto;
+    }
+    .footer {
+      background-color: #f8fafc;
+      border-top: 1px solid #e2e8f0;
+      padding: 24px 32px;
+      text-align: center;
+      font-size: 12px;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+    .footer a {
+      color: #64748b;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td align="center">
+          <div class="container">
+            
+            <!-- HEADER -->
+            <div class="header">
+              <span class="badge">⚡ Morning Briefing</span>
+              <h1 class="title">X Tech Radar</h1>
+              <p class="subtitle">{{ digest.date_str }}</p>
+            </div>
+
+            <!-- STATS BAR -->
+            <div class="stats-bar">
+              <span>🔍 <strong>{{ digest.total_scanned }}</strong> tweets scanned</span>
+              <span>🎯 <strong>{{ digest.total_tech_selected }}</strong> high-signal highlights</span>
+            </div>
+
+            <!-- CONTENT BODY -->
+            <div class="content-body">
+              <div class="greeting-box">
+                {{ digest.greeting }}
+              </div>
+
+              {% for category in digest.categories %}
+                <div class="category-header">
+                  <div>
+                    <h2 class="category-title">{{ category.emoji }} {{ category.category_name }}</h2>
+                    {% if category.description %}
+                      <p class="category-desc">{{ category.description }}</p>
+                    {% endif %}
+                  </div>
+                </div>
+
+                {% for item in category.items %}
+                  <div class="item-card">
+                    <h3 class="item-headline">{{ item.headline }}</h3>
+                    
+                    <div class="meta-row">
+                      Shared by <a href="{{ item.tweet_url }}" class="author-pill">{{ item.author_handle }}</a>
+                    </div>
+
+                    {% if item.summary_bullets %}
+                      <ul class="bullet-list">
+                        {% for b in item.summary_bullets %}
+                          <li>{{ b }}</li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+
+                    {% if item.why_it_matters %}
+                      <div class="why-matters">
+                        <strong>💡 Why it matters:</strong> {{ item.why_it_matters }}
+                      </div>
+                    {% endif %}
+
+                    <div class="action-row">
+                      <a href="{{ item.tweet_url }}" class="btn-x" target="_blank">View Post on 𝕏</a>
+                      {% for link in item.links %}
+                        <a href="{{ link.url }}" class="btn-link" target="_blank">{{ link.label }} ↗</a>
+                      {% endfor %}
+                      {% if item.tags %}
+                        <span class="tag">#{{ item.tags[0] }}</span>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% endfor %}
+              {% endfor %}
+
+            </div>
+
+            <!-- FOOTER -->
+            <div class="footer">
+              <p>Automated Morning Digest compiled privately for you from your X feed.</p>
+              <p>Powered by Playwright + Gemini AI Free Tier • Built for engineers</p>
+            </div>
+
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>
