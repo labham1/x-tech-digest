@@ -1,0 +1,22 @@
+# Environment and Secrets (CRITICAL: Do not commit)
+.env
+session.json
+
+# Generated output and previews
+preview_newsletter.html
+logs/
+*.log
+
+# Python cache & virtual environment
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+
+# OS / Editor artifacts
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
